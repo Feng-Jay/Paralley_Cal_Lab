@@ -3,9 +3,11 @@
 #include <pthread.h>
 #include <iomanip>
 #include <time.h>
+#include <stdlib.h>
 
 using namespace std;
-long long N,T;
+const long long N=1000000000;
+const long long T=10;
 double PI=0;
 double tim;
 pthread_mutex_t mut;
@@ -30,12 +32,10 @@ void* thread_function(void* arg)
 }
 int main()
 {
-    cout<<"Input number of nodes and number of threads"<<endl;
-    cin>>N>>T;
     pthread_t thread[T];
     int X[T];
-    clock_t start,end;
-    start=clock();
+    // clock_t start,end;
+    // start=clock();
     for (long long i=0;i<T;i++){
         X[i]=i;
         pthread_create(&thread[i],NULL,thread_function,&X[i]);
@@ -43,8 +43,8 @@ int main()
     for(long long i=0;i<T;i++){
         pthread_join(thread[i],NULL);
     }
-    end=clock();
-    tim=(double)(end-start)/CLOCKS_PER_SEC;
-    cout<<"time: "<<tim<<"s"<<endl;
+    // end=clock();
+    // tim=(double)(end-start)/CLOCKS_PER_SEC;
+    // cout<<"time: "<<tim<<"s"<<endl;
     cout<<fixed<<setprecision(10)<<PI*4/N<<endl;
 }

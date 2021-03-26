@@ -1,0 +1,11 @@
+#!/bin/bash -l        
+#PBS -N S_3
+#PBS -l nodes=2:ppn=8
+#PBS -j oe
+cd $PBS_O_WORKDIR
+procs=$(cat $PBS_NODEFILE | wc -l)
+date +%s.%N
+./s3
+date +%s.%N
+
+~
