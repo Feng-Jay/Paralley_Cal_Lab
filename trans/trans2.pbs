@@ -1,11 +1,11 @@
 #!/bin/bash -l        
 #PBS -N trans_2
-#PBS -l nodes=2:ppn=4
+#PBS -l nodes=1:ppn=1
 #PBS -j oe
 cd $PBS_O_WORKDIR
 procs=$(cat $PBS_NODEFILE | wc -l)
 date +%s.%N
-./trans_2 10000 100
+./trans_2 100 100
 date +%s.%N
 
 ~

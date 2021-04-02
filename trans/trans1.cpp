@@ -1,5 +1,6 @@
 #include <iostream>
 #include <time.h>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -14,14 +15,14 @@ void init_martix(int length)
     }
 }
 
-void print_martix(int length)
-{
-    for(int i=0;i<length;i++){
-        for(int j=0;j<length;j++)
-        cout<<martix[i][j]<<" ";
-        cout<<endl;
-    }
-}
+// void print_martix(int length)
+// {
+//     for(int i=0;i<length;i++){
+//         for(int j=0;j<length;j++)
+//         cout<<martix[i][j]<<" ";
+//         cout<<endl;
+//     }
+// }
 
 void trans_martix(int length)
 {
@@ -37,6 +38,7 @@ void trans_martix(int length)
 int main(int argc, char* argv[])
 {
     int length= atoi(argv[1]);
+    cout<<length<<endl;
     martix=new int*[length];
     for(int i=0;i<length;i++){
         martix[i]=new int[length];

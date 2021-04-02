@@ -1,5 +1,8 @@
 #include <iostream>
 #include <cmath>
+#include <stdlib.h>
+#include <string.h>
+#include <pthread.h>
 
 using namespace std;
 
@@ -75,16 +78,16 @@ void* inner_trans(void* arg)
 
 int main(int agrc, char* agrv[])
 {
-    len=atoi(agrv[1]);
-    T=atoi(agrv[2]);
-
-    int child_len=len/(sqrt(T));
-    int num=len/child_len;
-    int num_thread=num*(num-1)/2;
+    int m=atoi(agrv[1]);//m=100
+    T=m*m;//T=10000
+    len=m*m;//len=10000
+    int child_len=(int)sqrt((len*len)/T);//100
+    int num=len/child_len;//100
+    int num_thread=num*(num-1)/2;//99*50
     pthread_t *thread=new pthread_t[num_thread];
     int *X=new int [num_thread];
     init_martix();
-    print_martix();
+    // print_martix();
     int temp=0;
     for(int i=0;i<num;i++){
         for(int j=i+1;j<num;j++){
@@ -92,15 +95,16 @@ int main(int agrc, char* agrv[])
             locate.id=i*child_len+j;
             locate.child_len=child_len;
             pthread_create(&thread[temp],NULL,trans,&locate);
+            temp++;
         }
     }
     for(int i=0;i<num_thread;i++){
         pthread_join(thread[i],NULL);
     }
-    delete(thread);
-    delete(X);
-    cout<<"first trans"<<endl;
-    print_martix();
+    // delete(thread);
+    // delete(X);
+    // cout<<"first trans"<<endl;
+    // print_martix();
     
     pthread_t *thread_2=new pthread_t[T];
     int *Y=new int [T];
@@ -111,9 +115,9 @@ int main(int agrc, char* agrv[])
     for(int i=0;i<T;i++){
         pthread_join(thread_2[i],NULL);
     }
-    delete(thread_2);
-    delete(Y);
-    cout<<"second trans"<<endl;
-    print_martix();
+    // delete(thread_2);
+    // delete(Y);
+    // cout<<"second trans"<<endl;
+    // print_martix();
 
 }

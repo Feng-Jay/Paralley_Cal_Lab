@@ -1,6 +1,6 @@
 #include <iostream>
 #include <pthread.h>
-
+#include <stdlib.h>
 using namespace std;
 
 int **martix;
@@ -50,7 +50,7 @@ int main(int agrc, char* agrv[])
     N=atoi(agrv[1]);
     T=atoi(agrv[2]);
     init_martix();
-    print_martix();
+    // print_martix();
     pthread_t *thread=new pthread_t[T];
     int *X=new int [T];
     for(int i=0;i<T;i++){
@@ -61,7 +61,7 @@ int main(int agrc, char* agrv[])
     for(int i=0;i<T;i++){
         pthread_join(thread[i],NULL);
     }
-    cout<<"outcome:\n";
-    print_martix();
+    // cout<<"outcome:\n";
+    // print_martix();
     return 0;
 }
