@@ -78,9 +78,8 @@ void* inner_trans(void* arg)
 
 int main(int agrc, char* agrv[])
 {
-    int m=atoi(agrv[1]);//m=100
-    T=m*m;//T=10000
-    len=m*m;//len=10000
+    len=atoi(agrv[1]);
+    T=atoi(agrv[2]);
     int child_len=(int)sqrt((len*len)/T);//100
     int num=len/child_len;//100
     int num_thread=num*(num-1)/2;//99*50

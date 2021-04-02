@@ -5,7 +5,7 @@
 cd $PBS_O_WORKDIR
 procs=$(cat $PBS_NODEFILE | wc -l)
 date +%s.%N
-./trans_2 100 100
+./trans_2 10000 100
 date +%s.%N
 
 ~
